@@ -1,3 +1,4 @@
+from __future__ import annotations
 import logging
 import time
 from typing import Any, Optional
@@ -13,12 +14,28 @@ from pythorhead.site import Site
 from pythorhead.types import FeatureType, ListingType, SortType, SearchType, SearchOption
 from pythorhead.user import User
 from pythorhead.admin import Admin
+from pythorhead.emoji import Emoji
+from pythorhead.classes.user import LemmyUser
+from pythorhead import class_methods
 
 logger = logging.getLogger(__name__)
 
 class Lemmy:
     _known_communities = {}
     _requestor: Requestor
+    post: Post
+    community: Community
+    comment: Comment
+    site: Site
+    user: User
+    private_message: PrivateMessage
+    image: Image
+    mention: Mention
+    admin: Admin
+    emoji: Emoji
+    # imported class methods
+    get_user = class_methods.get_user
+    get_registration_applications = class_methods.get_applications
 
     def __init__(self, api_base_url: str, raise_exceptions = False, request_timeout=3) -> None:
         self._requestor = Requestor(raise_exceptions, request_timeout)
@@ -32,13 +49,25 @@ class Lemmy:
         self.image = Image(self._requestor)
         self.mention = Mention(self._requestor)
         self.admin = Admin(self._requestor)
+        self.emoji = Emoji(self._requestor)
 
     @property
     def nodeinfo(self):
         return self._requestor.nodeinfo
 
+    @property
+    def username(self):
+        return self._requestor.logged_in_username
+
+    @property
+    def instance_version(self):
+        return self._requestor.get_instance_version()
+    
     def log_in(self, username_or_email: str, password: str, totp: Optional[str] = None) -> bool:
         return self._requestor.log_in(username_or_email, password, totp)
+
+    def relog_in(self) -> bool:
+        return self._requestor._log_in()
 
     def discover_community(self, community_name: str, search=SearchOption.Retry) -> Optional[int]:
         if community_name in self._known_communities:
@@ -67,7 +96,7 @@ class Lemmy:
             community_id = request["community_view"]["community"]["id"]
             self._known_communities[community_name] = community_id
             return community_id
-
+    
     def search(
         self,
         q: str,
@@ -126,3 +155,4 @@ class Lemmy:
 
     def get_base_url(self):
         return self._requestor.domain
+    

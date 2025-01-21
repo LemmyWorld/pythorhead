@@ -1,5 +1,130 @@
 # Changelog
 
+## [v0.30.0](https://github.com/db0/pythorhead/tree/v0.30.0) (2025-01-21)
+
+[Full Changelog](https://github.com/db0/pythorhead/compare/v0.29.0...v0.30.0)
+
+## [v0.29.0](https://github.com/db0/pythorhead/tree/v0.29.0) (2025-01-16)
+
+[Full Changelog](https://github.com/db0/pythorhead/compare/v0.28.0...v0.29.0)
+
+## [v0.28.0](https://github.com/db0/pythorhead/tree/v0.28.0) (2025-01-15)
+
+[Full Changelog](https://github.com/db0/pythorhead/compare/v0.27.3...v0.28.0)
+
+**Merged pull requests:**
+
+- feat: Adds endpoint for custom emoji [\#107](https://github.com/db0/pythorhead/pull/107) ([db0](https://github.com/db0))
+
+## [v0.27.3](https://github.com/db0/pythorhead/tree/v0.27.3) (2024-12-21)
+
+[Full Changelog](https://github.com/db0/pythorhead/compare/v0.27.2...v0.27.3)
+
+## [v0.27.2](https://github.com/db0/pythorhead/tree/v0.27.2) (2024-12-21)
+
+[Full Changelog](https://github.com/db0/pythorhead/compare/v0.27.1...v0.27.2)
+
+## [v0.27.1](https://github.com/db0/pythorhead/tree/v0.27.1) (2024-12-21)
+
+[Full Changelog](https://github.com/db0/pythorhead/compare/v0.27.0...v0.27.1)
+
+## [v0.27.0](https://github.com/db0/pythorhead/tree/v0.27.0) (2024-12-21)
+
+[Full Changelog](https://github.com/db0/pythorhead/compare/v0.26.0...v0.27.0)
+
+**Merged pull requests:**
+
+- feat: adds object classes [\#104](https://github.com/db0/pythorhead/pull/104) ([db0](https://github.com/db0))
+
+## [v0.26.0](https://github.com/db0/pythorhead/tree/v0.26.0) (2024-10-22)
+
+[Full Changelog](https://github.com/db0/pythorhead/compare/v0.25.2...v0.26.0)
+
+**Merged pull requests:**
+
+- Make nodeinfo a property of Requestor [\#103](https://github.com/db0/pythorhead/pull/103) ([fixmycode](https://github.com/fixmycode))
+
+## [v0.25.2](https://github.com/db0/pythorhead/tree/v0.25.2) (2024-06-27)
+
+[Full Changelog](https://github.com/db0/pythorhead/compare/v0.25.1...v0.25.2)
+
+**Merged pull requests:**
+
+- support python 3.12 [\#101](https://github.com/db0/pythorhead/pull/101) ([stenius](https://github.com/stenius))
+
+## [v0.25.1](https://github.com/db0/pythorhead/tree/v0.25.1) (2024-06-23)
+
+[Full Changelog](https://github.com/db0/pythorhead/compare/v0.25.0...v0.25.1)
+
+**Closed issues:**
+
+- Reading and dealing with reports [\#99](https://github.com/db0/pythorhead/issues/99)
+
+**Merged pull requests:**
+
+- Add ModeratorView listing type [\#100](https://github.com/db0/pythorhead/pull/100) ([chris-y](https://github.com/chris-y))
+
+## [v0.25.0](https://github.com/db0/pythorhead/tree/v0.25.0) (2024-06-09)
+
+[Full Changelog](https://github.com/db0/pythorhead/compare/v0.24.2...v0.25.0)
+
+**Merged pull requests:**
+
+- Update mark post as read [\#98](https://github.com/db0/pythorhead/pull/98) ([CTalvio](https://github.com/CTalvio))
+
+## [v0.24.2](https://github.com/db0/pythorhead/tree/v0.24.2) (2024-05-04)
+
+[Full Changelog](https://github.com/db0/pythorhead/compare/v0.24.1...v0.24.2)
+
+**Closed issues:**
+
+- API doesn't map python True to JSON true properly [\#93](https://github.com/db0/pythorhead/issues/93)
+
+**Merged pull requests:**
+
+- Return JSON data when image upload fails [\#97](https://github.com/db0/pythorhead/pull/97) ([Krafting](https://github.com/Krafting))
+
+## [v0.24.1](https://github.com/db0/pythorhead/tree/v0.24.1) (2024-05-03)
+
+[Full Changelog](https://github.com/db0/pythorhead/compare/v0.24.0...v0.24.1)
+
+**Merged pull requests:**
+
+- \(issue \#93\) fix: saved\_only works for users now [\#96](https://github.com/db0/pythorhead/pull/96) ([ghost](https://github.com/ghost))
+
+## [v0.24.0](https://github.com/db0/pythorhead/tree/v0.24.0) (2024-04-17)
+
+[Full Changelog](https://github.com/db0/pythorhead/compare/v0.23.1...v0.24.0)
+
+**Merged pull requests:**
+
+- feat: allows to refresh auth token with relog\_in [\#94](https://github.com/db0/pythorhead/pull/94) ([db0](https://github.com/db0))
+
+## [v0.23.1](https://github.com/db0/pythorhead/tree/v0.23.1) (2024-03-16)
+
+[Full Changelog](https://github.com/db0/pythorhead/compare/v0.23.0...v0.23.1)
+
+**Merged pull requests:**
+
+- feat: Add Pillow requirement [\#92](https://github.com/db0/pythorhead/pull/92) ([db0](https://github.com/db0))
+- fix: pillow requirement [\#91](https://github.com/db0/pythorhead/pull/91) ([db0](https://github.com/db0))
+
+## [v0.23.0](https://github.com/db0/pythorhead/tree/v0.23.0) (2024-03-16)
+
+[Full Changelog](https://github.com/db0/pythorhead/compare/v0.22.0...v0.23.0)
+
+**Merged pull requests:**
+
+- feat: Support for more endpoints [\#90](https://github.com/db0/pythorhead/pull/90) ([db0](https://github.com/db0))
+
+## [v0.22.0](https://github.com/db0/pythorhead/tree/v0.22.0) (2024-02-09)
+
+[Full Changelog](https://github.com/db0/pythorhead/compare/v0.21.0...v0.22.0)
+
+**Merged pull requests:**
+
+- added ban\_from\_community [\#89](https://github.com/db0/pythorhead/pull/89) ([thekingoflorda](https://github.com/thekingoflorda))
+
 ## [v0.21.0](https://github.com/db0/pythorhead/tree/v0.21.0) (2024-01-27)
 
 [Full Changelog](https://github.com/db0/pythorhead/compare/v0.20.1...v0.21.0)

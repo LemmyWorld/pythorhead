@@ -1,5 +1,6 @@
 from typing import Any, List, Optional, Union
 
+from datetime import datetime
 from pythorhead.requestor import Request, Requestor
 from pythorhead.types import LanguageType, ListingType, SortType
 
@@ -14,6 +15,7 @@ class Community:
         title: str,
         description: Optional[str] = None,
         icon: Optional[str] = None,
+        banner: Optional[str] = None,
         nsfw: Optional[bool] = None,
         posting_restricted_to_mods: Optional[bool] = None,
         discussion_languages: Optional[List[Union[int, LanguageType]]] = None,
@@ -51,6 +53,39 @@ class Community:
             ]
 
         return self._requestor.api(Request.POST, "/community", json=new_community)
+
+    def edit(
+        self,
+        community_id: int,
+        title: Optional[str] = None,
+        description: Optional[str] = None,
+        icon: Optional[str] = None,
+        banner: Optional[str] = None,
+        nsfw: Optional[bool] = None,
+        posting_restricted_to_mods: Optional[bool] = None,
+        discussion_languages: Optional[List[Union[int, LanguageType]]] = None,
+    ) -> Optional[dict]:
+        """
+        Edit a community
+
+        Args:
+            name (str)
+            title (str)
+            description (str, optional): Defaults to None
+            icon (str, optional): Defaults to None
+            nsfw (bool, optional): Defaults to None
+            posting_restricted_to_mods (bool, optional): Defaults to None
+            discussion_languages: (List[Union[int, LanguageType]], optional): Defaults to None
+
+        Returns:
+            Optional[dict]: post data if successful
+        """
+        params: dict[str, Any] = {key: value for key, value in locals().items() if value is not None and key != "self"}
+        if discussion_languages is not None:
+            params["discussion_languages"] = [
+                language.value for language in discussion_languages if isinstance(language, LanguageType)
+            ]
+        return self._requestor.api(Request.PUT, "/community", json=params)
 
     def get(self, id: Optional[int] = None, name: Optional[str] = None) -> Optional[dict]:
         """
@@ -160,3 +195,43 @@ class Community:
             "person_id": person_id
         }
         return self._requestor.api(Request.POST, "/community/mod", json=addmodtocommunity)
+    
+    def ban_user(
+            self, 
+            ban: bool = True, 
+            expires: Optional[Union[datetime, int]] = None, 
+            person_id: int = None,
+            community_id: int = None,
+            reason: Optional[str] = None, 
+            remove_data: Optional[bool] = None
+        ) -> Optional[dict]:
+        """
+
+        Ban user from community
+
+        Args:
+            ban (bool): Defaults to True. False Unbans the user
+            expires (Optional[Union[datetime, int]]): Unix time of ban expiration as an integer or a datetime object. Defaults to None for permanent ban.
+            person_id (int): Defaults to None
+            community_id (int): Defaults to None
+            reason (Optional[str]): Defaults to None
+            remove_data (Optional[bool]): Defaults to None 
+        
+        Returns:
+            Optional[dict]: 
+        """
+    
+        banFromCommunity: dict[str, Any] = {"ban": ban, "person_id": person_id, "community_id": community_id}
+
+        if expires is not None:
+            if isinstance(expires, datetime):
+                # Convert the datetime to Unix time
+                expires = int(expires.timestamp())
+            banFromCommunity["expires"] = expires
+        if reason is not None:
+            banFromCommunity["reason"] = reason
+        if remove_data is not None:
+            banFromCommunity["remove_data"] = remove_data
+
+        return self._requestor.api(Request.POST, "/community/ban_user", json=banFromCommunity)
+

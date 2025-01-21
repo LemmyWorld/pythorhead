@@ -299,6 +299,24 @@ class Post:
         }
         return self._requestor.api(Request.POST, "/post/lock", json=lock_post)
 
+    def hide(self, post_id: int, hide: bool) -> Optional[dict]:
+        """
+
+        Hide a post
+
+        Args:
+            post_id (int)
+            hide (bool)
+
+        Returns:
+            Optional[dict]: post data if successful
+        """
+        hide_post = {
+            "post_ids": [post_id],
+            "hide": hide,
+        }
+        return self._requestor.api(Request.POST, "/post/hide", json=hide_post)
+
     def mark_as_read(self, post_id: int, read: bool) -> Optional[dict]:
         """
 
@@ -311,12 +329,36 @@ class Post:
         Returns:
             Optional[dict]: post data if successful
         """
+        # < 0.19.4 allows a single post only
+        if self._requestor.get_instance_version().compare("0.19.4") < 0:
+            mark_as_read_post = {
+                "post_id": post_id,
+                "read": read,
+            }
+        else:
+            mark_as_read_post = {
+                "post_ids": [post_id],
+                "read": read,
+            }
+        return self._requestor.api(Request.POST, "/post/mark_as_read", json=mark_as_read_post)
 
-        mark_as_read_post = {
-            "post_id": post_id,
+    def mark_multiple_as_read(self, post_ids: list, read: bool) -> Optional[dict]:
+        """
+
+        Mark many posts as read
+
+        Args:
+            post_ids (list)
+            read (bool)
+
+        Returns:
+            Optional[dict]: post data if successful
+        """
+        mark_as_read_posts = {
+            "post_ids": post_ids,
             "read": read,
         }
-        return self._requestor.api(Request.POST, "/post/mark_as_read", json=mark_as_read_post)
+        return self._requestor.api(Request.POST, "/post/mark_as_read", json=mark_as_read_posts)
 
     def site_metadata(self, url: str) -> Optional[dict]:
         """
@@ -410,3 +452,24 @@ class Post:
         return self._requestor.api(Request.POST, "/admin/purge/post", json=purge_post)
 
     __call__ = create
+
+
+    def list_votes(self, post_id: int, page: int = 1, limit: int = 50) -> Optional[dict]:
+        """
+
+        List the likes of a post
+
+        Args:
+            post_id (int)
+            page (int)
+            limit (int)
+
+        Returns:
+            Optional[dict]: list of likes if successful
+        """
+        list_votes_params = {
+            "post_id": post_id,
+            "page": page,
+            "limit": limit,
+        }
+        return self._requestor.api(Request.GET, "/post/like/list", params=list_votes_params)
